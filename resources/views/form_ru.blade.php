@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{URL::asset('css/style_index1.css')}}">
+    <link rel="shortcut icon" href="{{URL::asset('img/logot.png')}}" type="image/png">
+    <link href="https://fonts.googleapis.com/css2?family=Rubik&display=swap" rel="stylesheet">
+    <title>Контакты</title>
+</head>
+<!-- Header -->
+
+<body id=body>
+    <div class="main">
+        <div id="header">
+            <div class="header_container">
+                <div class="b_c">
+                    <a href ="{{url('http://dterm.com.ua/')}}"><img class="header_logo" src="{{URL::asset('img/logo.png')}}"></a>
+                    <div class="change_c">
+                        <a href="{{url('form1')}}"><img src="{{URL::asset('img/ukr.png')}}" alt="" class="change_l"></a>
+                        <a href=""><img src="{{URL::asset('img/ru.png')}}" alt="" class="change_l"></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form_container">
+            <img src="{{URL::asset('img/form.jpg')}}" alt="">
+            <div class="div form_container_overlay"></div>
+            <div class="form_container_1">
+                <div class="form_container_2">
+                    <div class="heading_11">Напишите нам</div>
+                    <div class="heading_12">ОСТАВИТЬ ЗАКАЗ ИЛИ ЖЕ ОТЗЫВ ВЫ МОЖЕТЕ воспользовавшись формой обратоной
+                         СВЯЗИ.
+                         НАПИШИТЕ В письме, если Хотите ЧТОБЫ С ВАМИ связаться по телефону И МЫ ОБЯЗАТЕЛЬНО Вам
+                         перезвоним.
+                         СПАСИБО ВАМ ЗА ЛЮБУЮ обратную связь.</div>
+                </div>
+                <div class="form_container_3">
+                    <form style="display: flex; flex-direction: column; align-items: flex-end;" method="GET" action="">
+                        <input name="text" type="text" class = "s_input" placeholder="Имя"/>
+                        <input name="phone" type="text" class = "s_input" placeholder="Телефон"/>
+                        <input name="email" type="text" class = "s_input" placeholder="Е-mail"/>
+                        <textarea name="message" type="text" class = "s_input s_mes" placeholder="Ваше сообщение"></textarea>
+                        <input type="submit" class = "subcribe_button" value="Написать" />
+                        <?php
+                        
+                        if(isset($_GET['email'])){
+                            mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
+                            $email = $_GET['email'];
+                            $phone = $_GET['phone']; 
+                            $msg = $_GET['message'];
+                            $name = $_GET['text'];      
+                            $result = mysqli_query($connect, "INSERT INTO contact (name,phone,email,msg) VALUES ('$name','$phone','$email','$msg')");
+                            
+                        }
+                        ?> 
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</body>
+
+</html>
+
